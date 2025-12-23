@@ -1,3 +1,11 @@
+const allrecipes={
+    "html/draniki.html":["яйца","картофель"],
+    "html/kartmash.html":["грибы", "картофель", "лук"],
+    "html/kartofsmetan.html":["картофель", "лук", "морковь", "сметана", "чеснок"],
+    "html/chpech.html":["какао", "мука", "яйца"],
+    "html/rise.html":["лук", "рик","яйца"],
+    "html/cheese.html":[ "мука","сыр","яйца"]
+};
 document.querySelectorAll(".btn").forEach(btn=>{
     btn.addEventListener("click", function(){
         this.classList.toggle("active");//добавление класса
@@ -5,20 +13,23 @@ document.querySelectorAll(".btn").forEach(btn=>{
     });
 })
 document.getElementById("btn1").addEventListener("click", function(){
-    const selc=[];
-    document.querySelectorAll(".btn.active").forEach(btn=>{
-        selc.push(btn.textContent.trim());//удаление пробелов
-        //добавлениие в массив контента из кнопок
-    });
-    const comba=selc.sort().join(", ");
-    // сортировка по алфавиту и склеивание всех слов в одну строку и пробелыдобавле вместе с запятой
-    if (comba==="картофель, масло, яйца"){
-        window.location.href="draniki.html";
+    const selctd=Array.from(document.querySelectorAll(".btn.active")).map(btn=>btn.textContent.trim());//поиск подходящих кнопок
+    let bestmath=null;
+    let maxlengradcount=0;
+    for (const [page,ingr] of Object.entries(allrecipes)){
+        //возвращает свойства объкта ввиде пар
+        const allpresent = ingr.every(ing => selctd.includes(ing));
+        if(allpresent){
+            if(ingr.length>maxlengradcount){
+            maxlengradcount=ingr.length;
+            bestmath = page;
+            }
+        }
     }
-    else if (comba==="грибы, картофель, лук, масло"){
-        window.location.href="kartmash.html";
+    if(bestmath){
+        window.location.href=bestmath;
     }
     else{
         alert("из этих продуктов я не знаю блюд")
     }
-})
+    });
