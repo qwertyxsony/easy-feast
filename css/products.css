@@ -6,6 +6,7 @@
 h1{
     text-align: center;
     font-size: 50px;
+    padding: 10px;
     color: black;
 }
 .btn{
@@ -41,10 +42,29 @@ h1{
     text-align: center;
 }
 .btn:hover, .btn1:hover{
-    background: rgb(254, 192, 255);
+    background: #FFC2D4;
 }
 
 .btn.active{
     background-color: rgb(51, 51, 51);
     color: aliceblue;
+}
+.goupbtn{
+    display: block;
+    color: white; 
+    text-decoration: none;
+    background-color: #FFC2D4 ;
+    width: 240px;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    font-size: 50px;
+    left: 157px;
+    bottom: 740px;
+    border-radius: 20px;
+    transition: 1s;
+}
+.goupbtn:hover{
+    transform: scale(1.2);
+    color: rgb(53, 53, 53);
 }
